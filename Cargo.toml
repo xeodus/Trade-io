@@ -1,0 +1,15 @@
+[package]
+name = "trade-gpt"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+kiteconnect = "0.2.9"
+serde_json = "1.0"
+dotenv = "0.15"
+anyhow = "1.0"
+chrono = "0.4"
+actix-web = "4.4"
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
