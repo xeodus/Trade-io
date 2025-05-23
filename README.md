@@ -8,11 +8,11 @@ This is a high-performant trading system that integrates with Zerodha's KiteConn
 
 ## Features
 
-- [x]**Automated Trading:** Execute Buy/Sell/Cancel orders with market or limit pricing
-- [x]**Smart Stock Selection:** Automatically identifies the best performing stocks over a certain time period and execute trades with stop losses
-- [x]**Real-Time Data:** Live data feeds via WebSocket connections
-- [x]**Risk Management:** Built in stop loss and target price configuration
-- [x]**RESTful API:** Clean HTTP endpoints for trade execution and monitoring
+- [x] **Automated Trading:** Execute Buy/Sell/Cancel orders with market or limit pricing
+- [x] **Smart Stock Selection:** Automatically identifies the best performing stocks over a certain time period and execute trades with stop losses
+- [x] **Real-Time Data:** Live data feeds via WebSocket connections
+- [x] **Risk Management:** Built in stop loss and target price configuration
+- [x] **RESTful API:** Clean HTTP endpoints for trade execution and monitoring
 
 ## Prerequisites
 - [x] Rust 1.70+
