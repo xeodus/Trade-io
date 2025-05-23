@@ -136,7 +136,7 @@ impl<'a> TradeExecutor<'a> {
         }
     }
 
-    fn stop_loss(&mut self, instruction: &TradeInstruction) -> Result<String, anyhow::Error> {
+    /*fn stop_loss(&mut self, instruction: &TradeInstruction) -> Result<String, anyhow::Error> {
         let mut params = HashMap::new();
         params.insert("tradingsymbol", instruction.symbol.clone());
         params.insert("exchange", instruction.exchange.clone());
@@ -170,5 +170,5 @@ impl<'a> TradeExecutor<'a> {
             None => return Err(anyhow::anyhow!("Cannot fetch order id to place stop loss.."))
         };
         Ok(order_id)
-    }
+    }*/
 }

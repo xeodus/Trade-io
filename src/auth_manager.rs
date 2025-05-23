@@ -10,11 +10,11 @@ pub struct AuthManager {
 }
 
 impl AuthManager {
-    pub fn new(&self) -> Self {
+    pub fn new(api_key: String, api_secret: String) -> Self {
         Self {
-            kite: KiteConnect::new(&self.api_key, ""),
-            api_key: self.api_key.clone(),
-            api_secret: self.api_secret.clone(),
+            kite: KiteConnect::new(&api_key, ""),
+            api_key,
+            api_secret,
             access_token: None,
             token_expiry: None
         }

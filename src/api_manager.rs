@@ -6,7 +6,7 @@ use chrono::Utc;
 use kiteconnect::connect::KiteConnect;
 use serde_json::json;
 
-async fn execute_trade(app_state: web::Data<AppState>, instruction: web::Json<TradeInstruction>) -> HttpResponse {
+pub async fn execute_trade(app_state: web::Data<AppState>, instruction: web::Json<TradeInstruction>) -> HttpResponse {
 
     let mut auth_manager = app_state.auth_manager.lock().unwrap();
 
@@ -59,7 +59,7 @@ async fn execute_trade(app_state: web::Data<AppState>, instruction: web::Json<Tr
     }
 }
 
-async fn get_login_url(app_state: web::Data<AppState>) -> HttpResponse {
+pub async fn get_login_url(app_state: web::Data<AppState>) -> HttpResponse {
     let mut auth_manager = app_state.auth_manager.lock().unwrap();
     let login_url = auth_manager.get_login_url();
 
@@ -68,7 +68,7 @@ async fn get_login_url(app_state: web::Data<AppState>) -> HttpResponse {
     }))
 }
 
-async fn auth_callback(app_state: web::Data<AppState>, query: web::Query<HashMap<String, String>>) -> HttpResponse {
+pub async fn auth_callback(app_state: web::Data<AppState>, query: web::Query<HashMap<String, String>>) -> HttpResponse {
     if let Some(token) = query.get("access token") {
         let mut auth_manager = app_state.auth_manager.lock().unwrap();
         match auth_manager.generate_session(token) {

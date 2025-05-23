@@ -1,6 +1,5 @@
 use std::sync::{Arc, Mutex};
 use serde::{Deserialize, Serialize};
-
 use crate::{auth_manager::AuthManager, market_data::MarketData};
 
 #[derive(Debug, Deserialize, Clone)]

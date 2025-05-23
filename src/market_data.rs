@@ -15,13 +15,6 @@ pub struct MarketDataHandler {
     prices: Arc<Mutex<HashMap<String, f64>>>
 }
 
-/*trait KiteTickerHandler {
-    fn on_open<T>(&mut self, ws: WebSocketHandler<T>) where T: KiteTickerHandler;
-    fn on_ticks<T>(&mut self, ws: WebSocketHandler<T>, ticks: Vec<serde_json::Value>) where T: KiteTickerHandler;
-    fn on_close<T>(&mut self, ws: WebSocketHandler<T>) where T: KiteTickerHandler;
-    fn on_error<T>(&mut self, ws: WebSocketHandler<T>) where T: KiteTickerHandler;
-}*/
-
 impl KiteTickerHandler for MarketDataHandler {
     fn on_open<T>(&mut self, ws: &mut WebSocketHandler<T>)
     where T: KiteTickerHandler
@@ -61,7 +54,7 @@ impl KiteTickerHandler for MarketDataHandler {
 }
 
 impl MarketData {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {
             kite: None,
             ticker: None,
