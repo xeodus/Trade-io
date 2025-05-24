@@ -1,8 +1,18 @@
 # Trade GPT
 
-![Rust](https://img.shields.io/badge/Rust-006845?style=flat&logo=rust&logoColor=white&labelColor=333333)
+<p align="center">
+  <a href="https://claude.ai" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Anthropic_logo.svg" alt="Claude.ai by Anthropic" height="50"/>
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://zerodha.com" target="_blank">
+    <img src="https://zerodha.com/static/images/logo.svg" alt="Zerodha" height="50"/>
+  </a>
+</p>
 
 ## Introduction
+
+![Rust](https://img.shields.io/badge/Rust-006845?style=flat&logo=rust&logoColor=white&labelColor=333333)
 
 This is a high-performant trading system that integrates with Zerodha's KiteConnect API for automated stock trading with real-time market data. So, this application enables us to talk to a centralised exchange like Zerodha directly through any LLM using MCP servers.
 
