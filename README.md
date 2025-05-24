@@ -1,9 +1,7 @@
 # Trade GPT
 
 <p align="center">
-  <a href="https://claude.ai" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Anthropic_logo.svg" alt="Claude.ai by Anthropic" height="50"/>
-  </a>
+  ![Claude AI](./claude-logo.svg)
   &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://zerodha.com" target="_blank">
     <img src="https://zerodha.com/static/images/logo.svg" alt="Zerodha" height="50"/>
