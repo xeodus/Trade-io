@@ -1,12 +1,13 @@
 # Trade GPT
 
 <p align="center">
-  ![Claude AI](./claude-logo.svg)
-  &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://zerodha.com" target="_blank">
     <img src="https://zerodha.com/static/images/logo.svg" alt="Zerodha" height="50"/>
   </a>
 </p>
+<h1 align="center">
+  <span style="color: #FF6B35; font-size: 48px; font-weight: bold;">🤖 Claude AI Assistant</span>
+</h1>
 
 ## Introduction
 
