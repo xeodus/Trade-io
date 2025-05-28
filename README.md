@@ -5,9 +5,9 @@
     <img src="https://zerodha.com/static/images/logo.svg" alt="Zerodha" height="50"/>
   </a>
 </p>
-<h1 align="center">
-  <span style="color: #FF6B35; font-size: 48px; font-weight: bold;">🤖 Claude AI Assistant</span>
-</h1>
+<p align="center">
+  🤖 𝒞𝓁𝒶𝓊𝒹𝑒 𝒜𝐼 𝒜𝓈𝓈𝒾𝓈𝓉𝒶𝓃𝓉
+</p>
 
 ## Introduction
 
