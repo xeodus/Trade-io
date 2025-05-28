@@ -66,7 +66,7 @@ impl MarketData {
 
     pub fn initialize_ticker(&mut self, api_key: &str, access_token: &str) {
         if let Some(kite) = &self.kite {
-            let instruments = kite.instruments(Some("TATAM0TORS"));
+            let instruments = kite.instruments(Some("TATAMOTORS"));
             let mut tokens = Vec::new();
             for instrument in instruments.into_iter() {
                 if let (Some(symbol), Some(last_token)) = (

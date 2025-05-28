@@ -4,7 +4,7 @@ use crate::{data_structures::{AppState, ErrorResponse, TradeInstruction, TradeRe
 use actix_web::{web::{self}, HttpResponse};
 use chrono::Utc;
 use kiteconnect::connect::KiteConnect;
-use serde_json::json;
+use serde_json::{json, Value};
 
 pub async fn execute_trade(app_state: web::Data<AppState>, instruction: web::Json<TradeInstruction>) -> HttpResponse {
 
@@ -103,4 +103,21 @@ pub async fn auth_callback(app_state: web::Data<AppState>, query: web::Query<Has
             "message": "Access token not found!".to_string()
         }));
     }
+}
+
+pub async fn handle_postback(payload: web::Json<Value>, _app_state: web::Data<AppState>) -> HttpResponse {
+    println!("Received Postback: {:?}", serde_json::to_string_pretty(&payload));
+
+    match payload.get("status") {
+        Some(status) => {
+            println!("Status received: {}", status)
+        },
+        None => {
+            println!("Status not received")
+        }
+    }
+
+    HttpResponse::Ok().json(json!({
+        "status": "received"
+    }))
 }
