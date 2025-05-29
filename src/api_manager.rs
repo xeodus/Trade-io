@@ -1,9 +1,7 @@
 use std::collections::HashMap;
-
 use crate::{data_structures::{AppState, ErrorResponse, TradeInstruction, TradeResponse}, trade_executor::TradeExecutor};
 use actix_web::{web::{self}, HttpResponse};
 use chrono::Utc;
-use kiteconnect::connect::KiteConnect;
 use serde_json::{json, Value};
 
 pub async fn execute_trade(app_state: web::Data<AppState>, instruction: web::Json<TradeInstruction>) -> HttpResponse {
@@ -69,23 +67,17 @@ pub async fn get_login_url(app_state: web::Data<AppState>) -> HttpResponse {
 }
 
 pub async fn auth_callback(app_state: web::Data<AppState>, query: web::Query<HashMap<String, String>>) -> HttpResponse {
-    if let Some(token) = query.get("access token") {
+    println!("== CALLBACK DEBUG ==");
+    println!("All query parameters:");
+    for (key, value) in query.iter() {
+        println!(" '{}' = '{} ", key, value);
+    }
+    println!("== END DEBUG ==");
+
+    if let Some(request_token) = query.get("request_token") {
         let mut auth_manager = app_state.auth_manager.lock().unwrap();
-        match auth_manager.generate_session(token) {
+        match auth_manager.generate_session(request_token).await {
             Ok(_) => {
-                if let Some(access_token) = &auth_manager.access_token {
-                    let mut market_data = app_state.market_data.lock().unwrap();
-                    let kite_clone = KiteConnect::new(&auth_manager.api_key, &access_token);
-                    market_data.set_kite(kite_clone);
-                    market_data.initialize_ticker(&auth_manager.api_key, &access_token);
-                }
-                else {
-                    return HttpResponse::BadRequest().json(json!({
-                        "status": "Unsuccessful".to_string(),
-                        "message": "Invaild access token received!".to_string()
-                    }));
-                }
-                
                 HttpResponse::Ok().json(json!({
                     "status": "Successful".to_string(),
                     "message": "Authentication successfull".to_string()

@@ -1,11 +1,9 @@
 use std::{env, io, sync::{Arc, Mutex}};
-
 use actix_web::{web, App, HttpServer};
 use api_manager::{auth_callback, execute_trade, get_login_url, handle_postback};
 use auth_manager::AuthManager;
 use data_structures::AppState;
 use market_data::MarketData;
-
 pub mod auth_manager;
 pub mod data_structures;
 pub mod market_data;

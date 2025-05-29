@@ -67,7 +67,7 @@ impl<'a> TradeExecutor<'a> {
             price_ref
         )?;
 
-        let order_id = match response.get("order id") {
+        let order_id = match response.get("order_id") {
             Some(id) => id.to_string(),
             None => return Err(anyhow::anyhow!("Cannot get a valid order id"))
         };
@@ -117,7 +117,7 @@ impl<'a> TradeExecutor<'a> {
             price_ref
         )?;
 
-        let order_id = match response.get("order id") {
+        let order_id = match response.get("order_id") {
             Some(id) => id.to_string(),
             None => {
                 return Err(anyhow::anyhow!("Cannot get a valid order id.."));
@@ -135,40 +135,4 @@ impl<'a> TradeExecutor<'a> {
             return Err(anyhow::anyhow!("Cannot cancel order.."));
         }
     }
-
-    /*fn stop_loss(&mut self, instruction: &TradeInstruction) -> Result<String, anyhow::Error> {
-        let mut params = HashMap::new();
-        params.insert("tradingsymbol", instruction.symbol.clone());
-        params.insert("exchange", instruction.exchange.clone());
-        params.insert("quantity", instruction.quantity.to_string());
-        params.insert("transaction type", "SELL".to_string());
-        params.insert("product", "CNC".to_string());
-        
-        let price_ = instruction.limit_price.map(|p| p.to_string());
-        let stop_loss = instruction.stop_loss.map(|s| s.to_string());
-
-        let response = self.kite.place_order(
-            &instruction.exchange,
-            &instruction.symbol,
-            "SELL",
-            &instruction.quantity.to_string(),
-            "regular",
-            price_.as_deref(),
-            Some("CNC"),
-            Some("SL"),
-            Some("DAY"),
-            None,
-            None,
-            None,
-            stop_loss.as_deref(),
-            stop_loss.as_deref(),
-            Some("STOP LOSS")
-        )?;
-
-        let order_id = match response.get("order id") {
-            Some(id) => id.to_string(),
-            None => return Err(anyhow::anyhow!("Cannot fetch order id to place stop loss.."))
-        };
-        Ok(order_id)
-    }*/
 }

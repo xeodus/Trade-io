@@ -1,5 +1,7 @@
 use kiteconnect::connect::KiteConnect;
-use std::time::{Duration, Instant};
+use reqwest::Client;
+use sha2::{Digest, Sha256};
+use std::{env, time::{Duration, Instant}};
 
 pub struct AuthManager {
     pub kite: KiteConnect,
@@ -15,7 +17,7 @@ impl AuthManager {
             kite: KiteConnect::new(&api_key, ""),
             api_key,
             api_secret,
-            access_token: None,
+            access_token: Some(env::var("ACCESS_TOKEN").expect("access token not set!")),
             token_expiry: None
         }
     }
@@ -41,18 +43,76 @@ impl AuthManager {
         self.kite.login_url()
     }
 
-    pub fn generate_session(&mut self, request_token: &str) -> Result<(), Box<dyn std::error::Error>> {
-        let users = self.kite.generate_session(request_token, &self.api_secret)?;
-        let access_token = match users.get("access token") {
-            Some(token) => token.as_str().unwrap_or("").to_string(),
-            None => return Err("No access token was found".into())
-        };
+    /*pub async fn get_access_token(&mut self, api_key: &str, api_secret: &str, request_token: &str) -> Result<String, Box<dyn std::error::Error>> {
+        let checksum_input = format!("{}{}{}", api_key, request_token, api_secret);
+        let checksum = format!("{:x}", Sha256::digest(checksum_input.as_bytes()));
+        let client = Client::new();
+        let response = client.post("https://api.kite.trade/session/token")
+        .form(&[
+            ("api_key", api_key),
+            ("api_secret", api_secret),
+            ("checksum", &checksum)
+        ])
+        .send()
+        .await?
+        .json::<serde_json::Value>()
+        .await?;
 
-        if access_token.is_empty() {
-            return Err("Empty access token received".into());
+        if let Some(data) = response.get("data") {
+            if let Some(access_token) = data.get("access_token") {
+                let token_str = access_token.as_str().unwrap().to_string();
+                self.access_token = Some(token_str.clone());
+                println!("access token successfully stored: {}", token_str);
+                return Ok(token_str);
+            }
+            else {
+                Err("access token wasn't stored".into())
+            }
         }
+        else {
+            Err("Failed to get access token from API response".into())
+        }
+        
+        /*let access_token = response["data"] ["access_token"].as_str().unwrap();
+        Ok(access_token.to_string())*/
+    }*/
 
-        self.set_access_token(access_token);
-        Ok(())
+    pub async  fn generate_session(&mut self, request_token: &str) -> Result<(), Box<dyn std::error::Error>> {
+        println!("== GENERATING SESSION ==");
+        println!("Request token: {}", request_token);
+        println!("API key: {}", self.api_key);
+        println!("API secret: {}", self.api_secret);
+        println!("== END DEBUG ==");
+
+        let checksum_input = format!("{}{}{}", self.api_key, request_token, self.api_secret);
+        let checksum = format!("{:x}", Sha256::digest(checksum_input.as_bytes()));
+        println!("Checksum: {:?}", checksum);
+
+        let client = Client::new();
+        let response = client.post("https://api.kite.trade/session/token")
+        .form(&[
+            ("api_key", &self.api_key),
+            ("api_secret", &self.api_secret),
+            ("checksum", &checksum)
+        ])
+        .send()
+        .await?
+        .json::<serde_json::Value>()
+        .await?;
+
+        if let Some(data) = response.get("data") {
+            if let Some(access_token) = data.get("access_token") {
+                let token_str = access_token.as_str().unwrap().to_string();
+                self.access_token = Some(token_str.clone());
+                println!("access token successfully stored: {}", token_str);
+                return Ok(());
+            }
+            else {
+                Err("access token wasn't stored".into())
+            }
+        }
+        else {
+            Err("Failed to get access token from API response".into())
+        }
     }
 }
