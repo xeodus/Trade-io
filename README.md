@@ -1,19 +1,10 @@
 # Trade GPT
 
-<p align="center">
-  <a href="https://zerodha.com" target="_blank">
-    <img src="https://zerodha.com/static/images/logo.svg" alt="Zerodha" height="50"/>
-  </a>
-</p>
-<p align="center">
-  🤖 𝒞𝓁𝒶𝓊𝒹𝑒 𝒜𝐼 𝒜𝓈𝓈𝒾𝓈𝓉𝒶𝓃𝓉
-</p>
-
 ## Introduction
 
 ![Rust](https://img.shields.io/badge/Rust-006845?style=flat&logo=rust&logoColor=white&labelColor=333333)
 
-This is a high-performant trading system that integrates with Zerodha's KiteConnect API for automated stock trading with real-time market data. So, this application enables us to talk to a centralised exchange like Zerodha directly through any LLM using MCP servers.
+This is a high-performant trading system that integrates with Zerodha's KiteConnect API for automated stock trading with real-time market data. It enables us to talk to a centralised exchange like Zerodha directly through any LLM using MCP servers. So, this application was built on top of Zerodha's kite dev platform and the core idea is to harness the power of agent-based systems and MCP servers.
 
 ## Features
 
@@ -31,10 +22,11 @@ This is a high-performant trading system that integrates with Zerodha's KiteConn
 ## Installation
 
 ```bash
-    git clone https://github.com/xeodus/Trade-GPT.git
-    cd Trade-GPT
+    git clone https://github.com/xeodus/Trade-io.git
+    cd Trade-io
     cargo build --release
 ```
+Once the server is up and running, we can perform our task through Claude AI via simple prompts.
 ## Environment Setup
 
 ```bash
