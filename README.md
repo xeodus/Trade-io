@@ -3,6 +3,7 @@
 ## Introduction
 
 ![Rust](https://img.shields.io/badge/Rust-006845?style=flat&logo=rust&logoColor=white&labelColor=333333)
+![Build Status](https://github.com/xeodus/Trade-io/actions/workflows/ci.yml/badge.svg)
 
 This is a high-performant trading system that integrates with Zerodha's KiteConnect API for automated stock trading with real-time market data. It enables us to talk to a centralised exchange like Zerodha directly through any LLM using MCP servers. So, this application was built on top of Zerodha's kite dev platform and the core idea is to harness the power of agent-based systems and MCP servers.
 
