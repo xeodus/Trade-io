@@ -1,6 +1,4 @@
-# Trade GPT
-
-## Introduction
+# Trade I/O
 
 ![Rust](https://img.shields.io/badge/Rust-006845?style=flat&logo=rust&logoColor=white&labelColor=333333)
 ![Build Status](https://github.com/xeodus/Trade-io/actions/workflows/ci.yml/badge.svg)
